@@ -304,11 +304,12 @@ input[name=cmd] {
 }
 
 .input_form_style {
-    width: 600px;
+    width: 450px;
     display: block;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
+    margin-left: 0 auto;
+    margin-right: 100px;
     margin-top: 30px;
  
 }
@@ -316,26 +317,28 @@ input[name=cmd] {
 .input_item_back_style{
     width: 100%;
     display: flex;
-    justify-content: left;
+    justify-content: center;
     align-items: center;
-    margin: 0 auto;
     margin-top: 10px;
 
 }
 
 .input_item_name_style {
-    width: 120px;
+    width: 140px;
     font-size: 15px;
+    font-weight: bold;
     margin-right: 20px;
+
 
 }
 
 textarea.input_item_value_style {
     width: 300px;
     font-size: 15px;
-    border-color:  rgb(248, 182, 44);
+    /* border-color:  rgb(248, 182, 44); */
     border-radius: 2px;
     resize: none;
+    border: solid 2px rgb(248, 182, 44);
 }
 
 textarea.input_item_value_style_high {
@@ -343,8 +346,49 @@ textarea.input_item_value_style_high {
     width: 300px;
     height: 60px;
     font-size: 15px;
-    border-color:  rgb(248, 182, 44);
+    /* border-color:  rgb(248, 182, 44); */
     border-radius: 2px;
+    border: solid 2px rgb(248, 182, 44);
+    resize: none;
+}
+
+.prev_input_form_style {
+    width: 450px;
+    height: 270px;
+    display: block;
+    justify-content: center;
+    align-items: top;
+    margin-right: 0 auto;
+    margin-left: 0px;
+    margin-top: 30px;   
+}
+
+.memory_title{
+    font-size: 20px;
+    font-family: Arial;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+
+.prev_input_memo_back_style {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+textarea.prev_input_item_value_style_high {
+    overflow-x: auto;
+    width: 450px;
+    height: 190px;
+    font-size: 15px;
+    border-color:   rgb(248, 182, 44);
+    border-radius: 5px;
+    border: solid 3px rgb(248, 182, 44);
+    background-color:  rgb(251, 251, 251);
     resize: none;
 }
 
@@ -506,10 +550,15 @@ button.input_item_send_btn_style {
     border: solid 1px;
     padding: 4px 12px;
     border-radius: 20px;
-    border-color: rgb(248, 182, 44);
+    /* border-color: rgb(248, 182, 44); */
+    border-color: black;
     transition: 0.4s;
-    background-color: rgb(248, 182, 44);
-    margin: 40px;
+    /* background-color: rgb(248, 182, 44); */
+    background-color: black;
+    /* margin: 30px; */
+    margin-left: 50px;
+    margin-top: 20px;
+    margin-right: 50px;
     color: rgb(255, 255, 255);
 }
 

@@ -238,6 +238,12 @@ if (file_exists("data/kid_songs.txt")) {
                     </div>
                 </form>
             </div>
+            <div class="prev_input_form_style">
+                <div class="memory_title">MEMORY</div>
+                <div id="prev_input_memo_back_style">
+                    <textarea id="prev_input_memo" class="prev_input_item_value_style_high"></textarea>
+                </div>
+            </div>
         </div>
     </div>
 
