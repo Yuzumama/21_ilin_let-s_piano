@@ -148,7 +148,7 @@ if (file_exists("data/kid_songs.txt")) {
                         $record = $records[$i];
                         echo "<div class='song_btn_back_style'>" .
                                 "<button id='my_song_" . ($i) . "' class='song_btn_style' style='--left: " . $left . "px' " .
-                                    "onClick='vm.loadFromRecord(\"my_songs\", \"" . ($i) . "\")'>" . $record["name"] . "</button>" .
+                                    "onClick='vm.loadFromRecord(\"my_song\", \"" . ($i) . "\")'>" . $record["name"] . "</button>" .
                                 "</div>\n";
                         $left += 220;
                     }
@@ -163,7 +163,7 @@ if (file_exists("data/kid_songs.txt")) {
         <div id="classic_song_list_back" class="empty">
             <div class="song_list_back_style">
                 <div class="song_prev_style">
-                    <button class="song_btn_prev_style" onclick="movePrev('classic_songs');">◀</button>
+                    <button class="song_btn_prev_style" onclick="movePrev('classic_song');">◀</button>
                 </div>
                 <div id="classic_song_list" class="song_list_style">
                     <div class="song_btn_back_style">
@@ -175,14 +175,14 @@ if (file_exists("data/kid_songs.txt")) {
                         $record = $classic_records[$i];
                         echo "<div class='song_btn_back_style'>" .
                             "<button id='classic_song_" . ($i) . "' class='song_btn_style' style='--left: " . $left . "px' " .
-                            "onClick='vm.loadFromRecord(\"classic_songs\", \"" . ($i) . "\")'>" . $record["name"] . "</button>" .
+                            "onClick='vm.loadFromRecord(\"classic_song\", \"" . ($i) . "\")'>" . $record["name"] . "</button>" .
                             "</div>\n";
                         $left += 220;
                     }
                     ?>
                 </div>
                 <div class="song_next_style">
-                    <button class="song_btn_next_style" onclick="moveNext('classic_songs');">▶</button>
+                    <button class="song_btn_next_style" onclick="moveNext('classic_song');">▶</button>
                 </div>
             </div>
         </div>
@@ -201,7 +201,7 @@ if (file_exists("data/kid_songs.txt")) {
                         $record = $kid_records[$i];
                         echo "<div class='song_btn_back_style'>" .
                             "<button id='kid_song_" . ($i) . "' class='song_btn_style' style='--left: " . $left . "px' " .
-                            "onClick='vm.loadFromRecord(\"kid_songs\", \"" . ($i) . "\")'>" . $record["name"] . "</button>" .
+                            "onClick='vm.loadFromRecord(\"kid_song\", \"" . ($i) . "\")'>" . $record["name"] . "</button>" .
                             "</div>\n";
                         $left += 220;
                     }
@@ -232,6 +232,7 @@ if (file_exists("data/kid_songs.txt")) {
                     <input id="input_record" type="text" name="input_record" hidden>
                     <input id="delete_record" type="text" name="delete_record" hidden>
                     <input id="category" type="text" name="category" value="my_songs" hidden>
+                    <input type="checkbox" name="save_to_sample" checked /> Save to sample
                     <div class="input_item_back_style">
                         <button id="delete_record_btn" class="input_item_send_btn_style"> Delete </button>
                         <button id="save_record_btn" class="input_item_send_btn_style"> Save </button>
@@ -282,6 +283,8 @@ if (file_exists("data/kid_songs.txt")) {
 
     let songListLength = [];
     <?="songListLength['my_song'] = " . count($records) . ";"?>
+    <?="songListLength['classic_song'] = " . count($classic_records) . ";"?>
+    <?="songListLength['kid_song'] = " . count($kid_records) . ";" ?>
     function moveNext(song_prefix) {
         if (currSongIndex < songListLength[song_prefix] - 2) {
             currSongIndex++;
@@ -344,6 +347,7 @@ var vm = new Vue({
     sounddata: soundpack,
     //這邊是音符，包括num: 播放的音跟time:在什麼時間點播放
     notes:[{num:5,time:100},{num:3,time:180},{num:3,time:260},{num:4,time:400},{num:2,time:480},{num:2,time:560},{num:1,time:700},{num:2,time:780},{num:3,time:860},{num:4,time:940},{num:5,time:1020},{num:5,time:1100},{num:5,time:1180},{num:5,time:1320},{num:3,time:1400},{num:3,time:1480},{num:4,time:1620},{num:2,time:1700},{num:2,time:1780},{num:1,time:1920},{num:3,time:2000},{num:5,time:2080},{num:5,time:2160},{num:1,time:2240}],
+    sampleNotes: [],
     //settimeout回傳的計時物件
     recorder: null,
     //現在播放時間
@@ -385,21 +389,21 @@ var vm = new Vue({
       {num: 15,key: 73  ,type:'white'}
     ],
       records: {
-          my_songs: [
+          my_song: [
             <?php
                 foreach ($records as $record) {
                     echo $record["record"] . ",\n";
                 }
             ?>
           ],
-          classic_songs: [
+          classic_song: [
               <?php
                   foreach ($classic_records as $record) {
                       echo $record["record"] . ",\n";
                   }
               ?>
           ],
-          kid_songs: [
+          kid_song: [
               <?php
                   foreach ($kid_records as $record) {
                       echo $record["record"] . ",\n";
@@ -408,7 +412,7 @@ var vm = new Vue({
           ]
       },
       names: {
-          my_songs: [
+          my_song: [
             <?php
             foreach ($records as $record) {
                 echo "\"" . $record["name"] . "\",\n";
@@ -416,14 +420,14 @@ var vm = new Vue({
             }
             ?>
           ],
-          classic_songs: [
+          classic_song: [
               <?php
               foreach ($classic_records as $record) {
                   echo "\"" . $record["name"] . "\",\n";
               }
               ?>
           ],
-          kid_songs: [
+          kid_song: [
               <?php
               foreach ($kid_records as $record) {
                   echo "\"" . $record["name"] . "\",\n";
@@ -432,21 +436,21 @@ var vm = new Vue({
           ]
       },
     authors: {
-          my_songs: [
+          my_song: [
             <?php
             foreach ($records as $record) {
                 echo "\"" . $record["author"] . "\",\n";
             }
             ?>
           ],
-          classic_songs: [
+          classic_song: [
               <?php
               foreach ($classic_records as $record) {
                   echo "\"" . $record["author"] . "\",\n";
               }
               ?>
           ],
-          kid_songs: [
+          kid_song: [
               <?php
               foreach ($kid_records as $record) {
                   echo "\"" . $record["author"] . "\",\n";
@@ -455,21 +459,21 @@ var vm = new Vue({
           ]
       },
       memos: {
-          my_songs: [
+          my_song: [
             <?php
             foreach ($records as $record) {
                 echo "\"" . $record["memo"] . "\",\n";
             }
             ?>
           ],
-          classic_songs: [
+          classic_song: [
               <?php
               foreach ($classic_records as $record) {
                   echo "\"" . $record["memo"] . "\",\n";
               }
               ?>
           ],
-          kid_songs: [
+          kid_song: [
               <?php
               foreach ($kid_records as $record) {
                   echo "\"" . $record["memo"] . "\",\n";
@@ -478,6 +482,7 @@ var vm = new Vue({
           ]
       },
     sheet: new Array(),
+    sampleSheet: new Array(),
     }, methods: {
         //播放音符，附上 id音符號碼/volume(0-1)音量
         playnote: function (id, volume) {
@@ -530,6 +535,8 @@ var vm = new Vue({
                 //播放音符，引數有音符號碼、音量
                 this.playnote(play_note, volume);
             }
+
+            this.updateNotePosition();
 
         },
         //開始錄音
@@ -591,6 +598,8 @@ var vm = new Vue({
             this.playing_time = 0;
             //下一個音符=0
             this.next_note_id = 0;
+
+            this.updateNotePosition()
 
         },
         //傳入音符id，看現在是否正在播放他，有的回傳true，沒有回傳false
@@ -657,7 +666,7 @@ var vm = new Vue({
                 }
             });
         },
-        createNote: function (n, i) {
+        createNote: function (n, i, isSample) {
             const note = document.createElementNS(svgNS, 'use')
             let anchor;
             if (n[0] == -1) {
@@ -676,31 +685,44 @@ var vm = new Vue({
             let notesElem = document.getElementById("notes");
             notesElem.appendChild(note)
             n.elm = note;
+
+            if(isSample) {
+                note.setAttribute("class", "use-sample");
+            }
+
             return note
         },
-        updateSvg: function () {
-            for (let c of this.sheet) {
+        updateOneSvg: function(targetSheet, targetNotes, isSample) {
+            for (let c of targetSheet) {
                 for (let n of c) {
                     n.elm.remove()
                 }
             }
-            this.sheet = this.parseNotes()
+            let newSheet = this.parseNotes(targetNotes)
             let i = 0
-            for (const c of this.sheet) {
+            for (const c of newSheet) {
                 for (const n of c) {
-                    this.createNote(n, i)
+                    this.createNote(n, i, isSample)
 
-                    if (i == this.now_note_id) {
-                        n.elm.classList.add('playing');
+                    if (!isSample) {
+                        if (i == this.now_note_id) {
+                            n.elm.classList.add('playing');
+                        }
                     }
                 }
                 i++
             }
+            return newSheet;
         },
-        parseNotes: function () {
+        updateSvg: function () {
+            this.sheet = this.updateOneSvg(this.sheet, this.notes, false);
+            this.sampleSheet = this.updateOneSvg(this.sampleSheet, this.sampleNotes, true);
+            this.updateNotePosition();
+        },
+        parseNotes: function (targetNotes) {
             let newNotes = [];
-            for (let i = 0; i < this.notes.length; i += 1) {
-                const note = this.notes[i];
+            for (let i = 0; i < targetNotes.length; i += 1) {
+                const note = targetNotes[i];
 
                 if (note.num >= 0) {
                     let n = Math.floor(note.num) % 7;
@@ -734,16 +756,35 @@ var vm = new Vue({
 
             return newNotes;
         },
-        loadFromRecord: function (song_prefix, index) {
+        updateNotePosition: function () {
+            let currNotePos = this.now_note_id * 50;
+            let xShift = Math.max(0, currNotePos - 700);
 
-            console.log(this.records);
+            let i = 0;
+            for (let c of this.sheet) {
+                for (let n of c) {
+                    n.elm.setAttribute('x', i * 50 - xShift);
+                }
+                ++i;
+            }
+        }, 
+        loadFromRecord: function (song_prefix, index) {
 
             this.clearNotes();
             let curr_records = this.records[song_prefix];
             let curr_names = this.names[song_prefix];
             let curr_authors = this.authors[song_prefix];
             let curr_memos = this.memos[song_prefix];
-            this.notes = curr_records[index];
+
+            this.notes = [];
+            this.sampleNotes = [];
+
+            if(song_prefix == "my_song") {
+                this.notes = curr_records[index];
+            }
+            else {
+                this.sampleNotes = curr_records[index];
+            }
 
             this.showRecord();
             this.updateSvg();
@@ -757,7 +798,7 @@ var vm = new Vue({
 
 <?php
 if (count($records) > 0) {
-    echo "vm.loadFromRecord('my_songs', " . (count($records) - 1) . ");";
+    echo "vm.loadFromRecord('my_song', " . (count($records) - 1) . ");";
 }
 ?>
 
