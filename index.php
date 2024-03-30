@@ -130,6 +130,8 @@ if (file_exists("data/kid_songs.txt")) {
                 <button id="kid_songs" class="kid_songs_btn_style"> Kid Songs </button>
             </div>
         </div>
+
+        <!-- オレンジのパート -->
         <div id="my_song_list_back" class="empty">
             <div class="song_list_back_style">
                 <div class="song_prev_style">
@@ -139,6 +141,7 @@ if (file_exists("data/kid_songs.txt")) {
                     <div class="song_btn_back_style">
                         <button id="my_song_back_btn" class="song_btn_style" style="--left: 50px" onclick="backToCategories();"> Back </button>
                     </div>
+                    <!--  -->
                     <?php
                     $left = 270;
                     for($i = 0 ; $i < count($records); ++$i){
@@ -156,11 +159,11 @@ if (file_exists("data/kid_songs.txt")) {
                 </div>
             </div>
         </div>
-        
+
         <div id="classic_song_list_back" class="empty">
             <div class="song_list_back_style">
                 <div class="song_prev_style">
-                    <button class="song_btn_prev_style" onclick="movePrev('classic_song');">◀</button>
+                    <button class="song_btn_prev_style" onclick="movePrev('classic_songs');">◀</button>
                 </div>
                 <div id="classic_song_list" class="song_list_style">
                     <div class="song_btn_back_style">
@@ -179,7 +182,7 @@ if (file_exists("data/kid_songs.txt")) {
                     ?>
                 </div>
                 <div class="song_next_style">
-                    <button class="song_btn_next_style" onclick="moveNext('classic_song');">▶</button>
+                    <button class="song_btn_next_style" onclick="moveNext('classic_songs');">▶</button>
                 </div>
             </div>
         </div>
@@ -209,20 +212,22 @@ if (file_exists("data/kid_songs.txt")) {
                 </div>
             </div>
         </div>
+
+        <!-- 白いパート -->
         <div class="form_back">
             <div class="input_form_style">
                 <form id="song_info_form" action="write.php" method="post" onkeydown="return event.key != 'Enter';">
                     <div class="input_item_back_style">
-                        <span class="input_item_name_style"> Name : </span>
-                        <input type="text" name="name" id="name" class="input_item_value_style">
+                        <span class="input_item_name_style"> Name of Songs </span>
+                        <textarea name="name" id="name" class="input_item_value_style" cols="40" rows="1"></textarea>
                     </div>
                     <div class="input_item_back_style">
-                        <span class="input_item_name_style"> Author : </span>
-	                    <input type="text" name="author" id="author" class="input_item_value_style">
+                        <span class="input_item_name_style"> Author </span>
+                        <textarea name="author" id="author" class="input_item_value_style" cols="40" rows="1"></textarea>
                     </div>
                     <div class="input_item_back_style">
-                        <span class="input_item_name_style"> Memo : </span>
-                        <input type="text" name="memo" id="memo" class="input_item_value_style_high" rows="5">
+                        <span class="input_item_name_style"> Comment </span>
+                        <textarea name="memo" id="memo" class="input_item_value_style_high" cols="40" rows="5"></textarea>
                     </div>
                     <input id="input_record" type="text" name="input_record" hidden>
                     <input id="delete_record" type="text" name="delete_record" hidden>
