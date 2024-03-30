@@ -348,6 +348,11 @@ input[name=cmd] {
 
 }
 
+.input_checkbox_back_style {
+    width: 300px;
+    height: 22px;
+}
+
 textarea.input_item_value_style {
     width: 300px;
     font-size: 15px;

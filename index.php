@@ -229,10 +229,15 @@ if (file_exists("data/kid_songs.txt")) {
                         <span class="input_item_name_style"> Comment </span>
                         <textarea name="memo" id="memo" class="input_item_value_style_high" cols="40" rows="5"></textarea>
                     </div>
+                    <div class="input_item_back_style">
+                        <span class="input_item_name_style"> Save to sample </span>
+                        <div class="input_checkbox_back_style">
+                            <input id="save_to_sample" type="checkbox" name="save_to_sample"> 
+                        </div>
+                    </div>
                     <input id="input_record" type="text" name="input_record" hidden>
                     <input id="delete_record" type="text" name="delete_record" hidden>
                     <input id="category" type="text" name="category" value="my_songs" hidden>
-                    <input id="save_to_sample" type="checkbox" name="save_to_sample" /> Save to sample
                     <div class="input_item_back_style">
                         <button id="delete_record_btn" class="input_item_send_btn_style"> Delete </button>
                         <button id="save_record_btn" class="input_item_send_btn_style"> Save </button>
@@ -796,7 +801,7 @@ var vm = new Vue({
             this.showRecord();
             this.updateSvg();
 
-            if(song_prefix == "my_song" || $("#save_to_sample").checked) {
+            if(song_prefix == "my_song" || $("#save_to_sample").is(':checked')) {
                 $("#name").val(curr_names[index]);
                 $("#author").val(curr_authors[index]);
                 $("#memo").val("");
