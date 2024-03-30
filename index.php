@@ -232,7 +232,7 @@ if (file_exists("data/kid_songs.txt")) {
                     <input id="input_record" type="text" name="input_record" hidden>
                     <input id="delete_record" type="text" name="delete_record" hidden>
                     <input id="category" type="text" name="category" value="my_songs" hidden>
-                    <input type="checkbox" name="save_to_sample" checked /> Save to sample
+                    <input id="save_to_sample" type="checkbox" name="save_to_sample" /> Save to sample
                     <div class="input_item_back_style">
                         <button id="delete_record_btn" class="input_item_send_btn_style"> Delete </button>
                         <button id="save_record_btn" class="input_item_send_btn_style"> Save </button>
@@ -242,7 +242,7 @@ if (file_exists("data/kid_songs.txt")) {
             <div class="prev_input_form_style">
                 <div class="memory_title">MEMORY</div>
                 <div id="prev_input_memo_back_style">
-                    <textarea id="prev_input_memo" class="prev_input_item_value_style_high"></textarea>
+                    <div id="prev_input_memo" class="prev_input_item_value_style_high"></div>
                 </div>
             </div>
         </div>
@@ -767,6 +767,13 @@ var vm = new Vue({
                 }
                 ++i;
             }
+            i = 0;
+            for (let c of this.sampleSheet) {
+                for (let n of c) {
+                    n.elm.setAttribute('x', i * 50 - xShift);
+                }
+                ++i;
+            }
         }, 
         loadFromRecord: function (song_prefix, index) {
 
@@ -789,9 +796,13 @@ var vm = new Vue({
             this.showRecord();
             this.updateSvg();
 
-            $("#name").val(curr_names[index]);
-            $("#author").val(curr_authors[index]);
-            $("#memo").val(curr_memos[index]);
+            if(song_prefix == "my_song" || $("#save_to_sample").checked) {
+                $("#name").val(curr_names[index]);
+                $("#author").val(curr_authors[index]);
+                $("#memo").val("");
+
+                $("#prev_input_memo").html(curr_memos[index]);
+            }
         }
     }
 })

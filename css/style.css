@@ -396,7 +396,7 @@ textarea.input_item_value_style_high {
     margin: 0 auto;
 }
 
-textarea.prev_input_item_value_style_high {
+.prev_input_item_value_style_high {
     overflow-x: auto;
     width: 450px;
     height: 190px;

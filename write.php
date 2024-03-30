@@ -1,17 +1,25 @@
 <?php
 
 // Get input data
-$date = date("Y-m-d H:i:s");
+$date = date("Y/m/d H:i");
 $name = $_POST["name"];
 $author = $_POST["author"];
 $input_record = $_POST["input_record"];
 $memo = $_POST["memo"];
 $delete_record = $_POST["delete_record"];
 $category = $_POST["category"];
+$save_to_sample = $_POST["save_to_sample"];
 
 // Read from text file
 $json_str = "";
-$file_name = "data/" . $category . ".txt";
+
+if($save_to_sample) {
+    $file_name = "data/" . $category . ".txt";
+}
+else {
+    $file_name = "data/my_songs.txt";
+}
+
 if (file_exists($file_name)) {
     $json_str = file_get_contents($file_name);
 
@@ -25,9 +33,11 @@ else
 }
 
 // Find the same song
+$prev_memo = "";
 for($i = 0 ; $i < count($records); $i ++){
     $record = $records[$i];
     if ($record["name"] == $name && $record["author"] == $author) {
+        $prev_memo = $record["memo"];
         array_splice($records, $i, 1);
         break;
     }
@@ -40,7 +50,7 @@ if ($delete_record != "1") {
         'name' => $name,
         'author' => $author,
         'record' => $input_record,
-        'memo' => $memo,
+        'memo' => $prev_memo . $date . ":<br>" . $memo . "<br><br>",
     ]);
 }
 
