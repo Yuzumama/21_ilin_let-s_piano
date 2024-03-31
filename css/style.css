@@ -22,13 +22,22 @@ html, body {
     z-index: -1;
 }
 
+.main_back {
+    width: 100%;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+
 .first_back_style{
     content: "";
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
-    height: 600px;
+    height: 690px;
     background-color: rgb(0,0,0);
 }
 
@@ -36,17 +45,34 @@ html, body {
     content: "";
     position: absolute;
     left: 0;
-    top: 370px;
+    top: 460px;
     width: 100%;
-    height: 400px;
+    height: 380px;
     background-color: rgb(248, 182, 44);
 }
 
-h2 {
-  margin-bottom: 30px;
+/* h2 { */
+  /* margin-bottom: 30px; */
+/* } */
+
+
+
+.title_name{
+    width: 100%;
+    font-family: Arial;
+    font-size: 60px;
+    font-style: italic;
+    color: white;
+    z-index: 3;
+    position: relative;
+    text-align: center;
+    margin-top: 30px;
+
 }
 
-.controls {
+
+/* Piano Sheet */
+.svg_back{
     width: 100%;
     display: flex;
     justify-content: center;
@@ -54,150 +80,14 @@ h2 {
     margin: 0 auto;
 }
 
-.keyboard_back_style{
+.svg_frame_style {
     width: 1000px;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
+    height: 220px;
+    overflow-y: auto;
+    overflow-x: auto;
     margin: 0 auto;
 }
 
-button.keyboard_button_style {
-    width: 120px;
-    height: 32px;
-    border: none;
-    border: solid 1px;
-    padding: 4px 12px;
-    border-radius: 16px;
-    border-color: rgb(248, 182, 44);
-    transition: 0.4s;
-    background-color: #FFFFFF;
-    margin-left: 25px;
-    margin-right: 25px;
-    color: black;
-}
-button.keyboard_button_style:hover {
-    background-color: #444;
-    color: white;
-    border-color: white;
-}
-
-.notes_list li {
-  display: inline-block;
-  border-right: solid 1px;
-  padding: 2px 5px;
-  transition: 0.3s;
-  cursor: pointer;
-}
-.notes_list li:hover {
-  background-color: #ccc;
-}
-.notes_list li.playing {
-  background-color: #ccc;
-}
-.notes_list li .time {
-  font-size: 8px;
-  opacity: 0.3;
-}
-.notes_list li .num {
-  font-size: 16px;
-}
-
-.center_box {
-    position: relative;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, 0%);
-    text-align: center;
-    width: 100%;
-    color: white;
-}
-
-.keyboard {
-  box-shadow: 0px 0px 40px -5px rgba(0, 0, 0, 0.4);
-  display: inline-block;
-  cursor: pointer;
-  margin-bottom: 30px;
-  margin-top: 50px;
-}
-
-.pianokey {
-  display: inline-block;
-  vertical-align: top;
-  position: relative;
-}
-
-.white.playing {
-  background-color: #d5d5d5;
-  transform: translate(0px, 0px);
-}
-
-.black.playing {
-  background-color: #777;
-  transform: translate(0px, 0px);
-}
-.black.playing:active {
-  background-color: #aaa;
-}
-
-.white {
-  position: relative;
-  width: 44px;
-  height: 200px;
-  border: solid 1px #eee;
-  display: inline-block;
-  position: relative;
-  background-color: #fff;
-  border: solid 1px rgba(0, 0, 0, 0.1);
-  left: 0px;
-  top: 0px;
-  z-index: 0;
-  transform: translate(-3px, -3px);
-  transition: 0.1s;
-}
-.white:hover {
-  transform: translate(0px, 0px);
-  background-color: #eee;
-}
-
-.black {
-  position: relative;
-  width: 22px;
-  height: 120px;
-  margin-left: -11px;
-  margin-right: -11px;
-  background-color: #585858;
-  z-index: 20;
-  transform: translate(-3px, -3px);
-  transition: 0.1s;
-}
-.black:hover {
-  transform: translate(0px, 0px);
-  background-color: #3f3f3f;
-}
-
-i {
-  margin-left: 5px;
-  margin-right: 0px;
-}
-
-kbd {
-    font-family: Consolas, "Lucida Console", monospace;
-    display: inline-block;
-    border-radius: 0.1em;
-    padding: 0px 0.1em;
-    box-shadow: 1px 1px 1px rgba(0,0,0,0.533);
-    margin: 0.1em;
-    font-size: small;
-    vertical-align: text-bottom;
-    background: #eee;
-    font-weight: 500;
-    color: #555;
-    cursor: pointer;
-    letter-spacing: 0.5px;
-    letter-spacing: 1px;
-    vertical-align: middle;
-}
 
 .svg {
     position: relative;
@@ -277,15 +167,9 @@ input[name=cmd] {
     stroke: none;
 }
 
-.main_back {
-    width: 100%;
-    display: block;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-}
 
-.svg_back{
+/* Keyboard part */
+.controls {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -293,12 +177,149 @@ input[name=cmd] {
     margin: 0 auto;
 }
 
-.svg_frame_style {
+.keyboard_back_style{
     width: 1000px;
-    height: 220px;
-    overflow-y: auto;
-    overflow-x: auto;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     margin: 0 auto;
+}
+
+button.keyboard_button_style {
+    width: 120px;
+    height: 32px;
+    border: none;
+    border: solid 1px;
+    padding: 4px 12px;
+    border-radius: 16px;
+    border-color: rgb(248, 182, 44);
+    transition: 0.4s;
+    background-color: #FFFFFF;
+    margin-left: 25px;
+    margin-right: 25px;
+    color: black;
+}
+button.keyboard_button_style:hover {
+    background-color: #444;
+    color: white;
+    border-color: white;
+}
+
+.notes_list li {
+  display: inline-block;
+  border-right: solid 1px;
+  padding: 2px 5px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.notes_list li:hover {
+  background-color: #ccc;
+}
+.notes_list li.playing {
+  background-color: #ccc;
+}
+.notes_list li .time {
+  font-size: 8px;
+  opacity: 0.3;
+}
+.notes_list li .num {
+  font-size: 16px;
+}
+
+.center_box {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 0%);
+    text-align: center;
+    width: 100%;
+    color: white;
+}
+
+.keyboard {
+  box-shadow: 0px 0px 40px -5px rgba(0, 0, 0, 0.4);
+  display: inline-block;
+  cursor: pointer;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.pianokey {
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+}
+
+.white.playing {
+  background-color: #d5d5d5;
+  transform: translate(0px, 0px);
+}
+
+.black.playing {
+  background-color: #777;
+  transform: translate(0px, 0px);
+}
+.black.playing:active {
+  background-color: #aaa;
+}
+
+.white {
+  position: relative;
+  width: 44px;
+  height: 200px;
+  border: solid 1px #eee;
+  display: inline-block;
+  position: relative;
+  background-color: #fff;
+  border: solid 1px rgba(0, 0, 0, 0.1);
+  left: 0px;
+  top: 0px;
+  z-index: 0;
+  transform: translate(-3px, -3px);
+  transition: 0.1s;
+}
+.white:hover {
+  transform: translate(0px, 0px);
+  background-color: #eee;
+}
+
+.black {
+  position: relative;
+  width: 22px;
+  height: 120px;
+  margin-left: -11px;
+  margin-right: -11px;
+  background-color: #585858;
+  z-index: 20;
+  transform: translate(-3px, -3px);
+  transition: 0.1s;
+}
+.black:hover {
+  transform: translate(0px, 0px);
+  background-color: #3f3f3f;
+}
+
+i {
+  margin-left: 5px;
+  margin-right: 0px;
+}
+
+kbd {
+    font-family: Consolas, "Lucida Console", monospace;
+    display: inline-block;
+    border-radius: 0.1em;
+    padding: 0px 0.1em;
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.533);
+    margin: 0.1em;
+    font-size: small;
+    vertical-align: text-bottom;
+    background: #eee;
+    font-weight: 500;
+    color: #555;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    letter-spacing: 1px;
+    vertical-align: middle;
 }
 
 .keyboard_back {
@@ -580,6 +601,7 @@ button.input_item_send_btn_style {
     margin-left: 50px;
     margin-top: 20px;
     margin-right: 50px;
+    margin-bottom: 50px;
     color: rgb(255, 255, 255);
 }
 
