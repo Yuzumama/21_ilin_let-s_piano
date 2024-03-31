@@ -29,11 +29,15 @@ Let's piano 一緒にピアノを弾きましょう
 他の方が作った音楽のコードとJavaScriptの構成は、理解できるように勉強しています。
 
 今回の参考資料：
+
 defs
 https://developer.mozilla.org/ja/docs/Web/SVG/Element/defs
 
 SVG
 https://qiita.com/jkr_2255/items/437ec8b7e9218de04da2
+
+VUE - Javascript + HTML
+https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Vue_getting_started
 
 
 
